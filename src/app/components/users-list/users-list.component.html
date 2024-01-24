@@ -1,0 +1,89 @@
+<div class="users-list">
+    <h4 class="text-center">Список экспертов по оценке и руководителей</h4>
+    <div class="filter">
+        <app-filter></app-filter>
+    </div>
+    <div class="users-list__table">
+        <p-table [value]="users"
+            selectionMode="multiple"
+            [(selection)]="selectedUsers"
+            dataKey="id"
+            [paginator]="true"
+            [rows]="5"
+            [selectionPageOnly]="true"
+            [loading]="isLoading"
+            [tableStyle]="{'min-width': '50rem'}">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th style="width: 4rem"><p-tableHeaderCheckbox></p-tableHeaderCheckbox></th>
+                    <th pSortableColumn="id" style="min-width:200px">
+                        ID <p-sortIcon field="id"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="regDate" style="min-width:200px">
+                        Дата регистрации <p-sortIcon field="regDate"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="fullName" style="min-width:200px">
+                        ФИО <p-sortIcon field="fullName"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="job" style="min-width:200px">
+                        Должность <p-sortIcon field="job"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="login" style="min-width:200px">
+                        Почта (логин) <p-sortIcon field="login"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="password" style="min-width:200px">
+                        Пароль <p-sortIcon field="password"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="phone" style="min-width:200px">
+                        Телефон, привязанный к мессенджеру <p-sortIcon field="phone"></p-sortIcon>
+                    </th>
+                    <th style="width: 4rem"></th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-user let-rowIndex="rowIndex">
+                <tr>
+                    <td>
+                        <p-tableCheckbox [value]="user"></p-tableCheckbox>
+                    </td>
+                    <td>{{user.id}}</td>
+                    <td>{{user.regDate}}</td>
+                    <td>{{user.fullName}}</td>
+                    <td>{{user.job}}</td>
+                    <td>
+                        <a [href]="'mailto:'+ user.login">
+                            {{user.login}}</a>
+                    </td>
+                    <td>
+                        <input type="password" value="user.password" class="users-list__table_pswd" readonly>
+                    </td>
+                    <td>{{user.phone | phone}}</td>
+                    <td>
+                        <p-button
+                            icon="pi pi-pencil"
+                            pTooltip="Редактировать"
+                            tooltipPosition="left"
+                            class="users-list__table_btn"
+                            (click)="onEditClick(user)"></p-button></td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+    <div class="users-list__btns">
+        <p-button *ngIf="selectedUsers.length" (click)="onDelBtnClick()" class="users-list__btns_btn">Удалить выбранные</p-button>
+        <p-button (click)="onAddBtnClick()" class="users-list__btns_btn">Добавить пользователя</p-button>
+    </div>
+</div>
+
+<p-dialog
+    header="Добавление данных о экспертах по оценке и руководителях"
+    [(visible)]="showAddDialog"
+    [modal]="true">
+    <app-add-user class="center" (onAddClicked)="onAddClicked()"></app-add-user>
+</p-dialog>
+
+<p-dialog
+    header="Редактирование данных о экспертах по оценке и руководителях"
+    [(visible)]="showEditDialog"
+    [modal]="true">
+    <app-edit-user [editUser]="editUser" class="center" (saveEdit)="onSaveEdit()"></app-edit-user>
+</p-dialog>

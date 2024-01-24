@@ -1,0 +1,18 @@
+.filter {
+    padding: 15px 0;
+    &-item {
+        & > label {
+            color: var(--primary-color);
+            font-size: 14px;
+            font-weight: bold;
+            padding-bottom: 5px;
+            margin-left: 10px;
+        }
+        & ::ng-deep .p-dropdown {    
+            box-shadow: 0 0 10px 5px rgba(221, 221, 221, 1);
+        }
+    }
+    &_btn {
+        margin-top: 22px;
+    }
+}

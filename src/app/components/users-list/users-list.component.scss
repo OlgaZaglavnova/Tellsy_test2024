@@ -1,0 +1,41 @@
+.users-list {
+    &__table {
+        margin-top: 100px;
+        ::ng-deep th {
+            color: var(--primary-color);
+            font-size: 14px;
+            font-weight: normal;
+        }
+        &_pswd {
+            border: none;
+        }
+        &_btn {
+            & ::ng-deep .p-button.p-button-icon-only {
+                height: 30px;
+                width: 30px;
+                color: var(--primary-color);
+                background-color: white;
+                border-color: lightgray;
+            }
+        }
+    }
+    &__btns {
+        display: flex;
+        justify-content: end;
+        &_btn {
+            margin-top: -55px;
+            margin-left: 5px;
+        }
+    }
+    &__spinner {
+        width: 20px;
+        height: 20px;
+        margin-top: 200px;
+    }
+}
+
+::ng-deep .p-dialog-title {
+    color: var(--primary-color);
+    font-size: 16px;
+
+}

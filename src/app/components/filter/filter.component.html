@@ -1,0 +1,48 @@
+<form [formGroup]="filterForm" (submit)="onSubmit()" class="filter flex-row">
+    <div class="filter-item flex-column">
+        <label for="filter-id">ID</label>
+        <p-dropdown
+            id="filter-id"
+            formControlName="id"
+            [options]="(ids$ | async) || []"
+            placeholder="Введите ID"
+            [editable]="true"
+        ></p-dropdown>    
+    </div>
+    
+    <div class="filter-item flex-column">
+        <label for="filter-fullName">ФИО</label>
+        <p-dropdown
+            id="filter-fullName"
+            formControlName="fullName"
+            [options]="(fullNames$ | async) || []"
+            placeholder="Введите ФИО участника"
+            [editable]="true"
+        ></p-dropdown>    
+    </div>
+
+    <div class="filter-item flex-column">
+        <label for="filter-job">Должность</label>
+        <p-dropdown
+            id="filter-job"
+            formControlName="job"
+            [options]="(jobs$ | async) || []"
+            placeholder="Введите должность участника"
+            [editable]="true"
+        ></p-dropdown>    
+    </div>
+
+    <div class="filter-item flex-column">
+        <label for="filter-login">Почта (логин)</label>
+        <p-dropdown
+            id="filter-login"
+            formControlName="login"
+            [options]="(logins$ | async) || []"
+            placeholder="Введите логин участника"
+            [editable]="true"
+        ></p-dropdown>    
+    </div>
+
+    <p-button type="submit" class="filter_btn">Применить фильтры</p-button>
+
+</form>

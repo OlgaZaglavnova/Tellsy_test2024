@@ -1,0 +1,61 @@
+<form [formGroup]="addUserForm" class="add flex-column" (submit)="onSubmit()">
+    <div class="add__field flex-column">
+        <label for="add-date">Дата регистрации <span *ngIf="required('regDate')" class="required-item">*</span>
+        </label>
+        <p-calendar id="add-date"
+            class="add__field_date"
+            formControlName="regDate"
+            [showIcon]="true"
+            dateFormat="dd.mm.yy"></p-calendar>
+        <span *ngIf="showRequiredMsg('regDate')" class="required-item required-msg">Поле обязательно для заполнения</span>
+    </div>
+    <div class="add__field flex-column">
+        <label for="add-fullName">ФИО <span *ngIf="required('regDate')" class="required-item">*</span></label>
+        <input id="add-fullName"
+            type="text"
+            pInputText
+            formControlName="fullName"
+            placeholder="Введите ФИО участника"/>
+        <span *ngIf="showRequiredMsg('fullName')" class="required-item required-msg">Поле обязательно для заполнения</span>
+    </div>
+    <div class="add__field flex-column">
+        <label for="add-job">Должность <span *ngIf="required('regDate')" class="required-item">*</span></label>
+        <p-dropdown
+            id="add-job"
+            formControlName="job"
+            [options]="(jobs$ | async) || []"
+            placeholder="Введите должность участника"
+            [editable]="true"
+        ></p-dropdown>
+        <span *ngIf="showRequiredMsg('job')" class="required-item required-msg">Поле обязательно для заполнения</span>
+    </div>
+    <div class="add__field flex-column">
+        <label for="add-login">Почта (логин) <span *ngIf="required('regDate')" class="required-item">*</span></label>
+        <input id="add-login"
+            type="text"
+            pInputText
+            formControlName="login"
+            placeholder="Введите почту (логин) участника"/>
+        <span *ngIf="showRequiredMsg('login')" class="required-item required-msg">Поле обязательно для заполнения</span>
+    </div>
+    <div class="add__field flex-column">
+        <label for="add-password">Пароль <span *ngIf="required('regDate')" class="required-item">*</span></label>
+        <input id="add-password"
+            type="text"
+            pInputText
+            formControlName="password"
+            placeholder="Введите пароль"/>
+        <span *ngIf="showRequiredMsg('password')" class="required-item required-msg">Поле обязательно для заполнения</span>
+    </div>
+    <div class="add__field flex-column">
+        <label for="add-phone">Телефон, привязанный к мессенджеру <span *ngIf="required('regDate')" class="required-item">*</span></label>
+        <input id="add-phone"
+            type="text"
+            pInputText
+            formControlName="phone"
+            placeholder="Введите номер телефона"/>
+        <span *ngIf="showRequiredMsg('phone')" class="required-item required-msg">Поле обязательно для заполнения</span>
+    </div>
+    <p-button type="submit" class="add__btn center">Сохранить</p-button>
+
+</form>
